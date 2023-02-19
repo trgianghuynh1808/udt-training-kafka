@@ -23,7 +23,7 @@ resource "digitalocean_droplet" "kafka" {
 
 resource "digitalocean_ssh_key" "default" {
   name = "terraform-training"
-  public_key = file("../kafka.pub")
+  public_key = file("./kafka.pub")
 }
 
 # variables.tf
