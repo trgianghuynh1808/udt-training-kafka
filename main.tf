@@ -19,15 +19,16 @@ resource "digitalocean_droplet" "kafka" {
   name   = "giang-kafka"
   region = "sgp1"
   size   = "s-4vcpu-8gb"
+  ssh_keys = [digitalocean_ssh_key.default.fingerprint]
+  user_data = file("./kafka-server.sh")
 }
+
+
+
 
 resource "digitalocean_ssh_key" "default" {
   name = "terraform-training"
-  public_key = file("./kafka.pub")
+  public_key = var.ssh_public_key
 }
 
-# variables.tf
-# Set the variable value in *.tfvars file
-# or using -var="do_token=..." CLI option
-variable "do_token" {}
 

@@ -1,0 +1,60 @@
+# direction: right
+
+LocalMachine: Local Machine {
+  terraformProject: Terraform Project {
+    style: {
+      stroke-dash: 3
+    }
+
+    sshKey: SSH Key
+    terraformFile: tf Files
+
+    sshKey.shape: page
+    terraformFile.shape: page
+  }
+
+  producer: Producer
+  consumer: Consumer
+}
+
+VPS: VPS {
+  DockerNetwork: Docker Network {
+    style: {
+      stroke-dash: 3
+    }
+
+    nginx: Nginx
+    kafkaContainer: Kafka Container
+    kafkaUIContainer: Kafka UI Container
+    zookeeperContainer: Zookeepe Container
+
+    zookeeperContainer <-> kafkaContainer
+    nginx -> kafkaContainer
+    nginx -> kafkaUIContainer
+  }
+
+  Docker: Docker
+  DockerNetwork -- Docker
+}
+
+Terraform: TerraformCloud
+Terraform.shape: cloud
+
+DO: DigitalOcean
+DO.shape: cloud
+
+Git: GitRepo
+
+DockerRegistry: Docker Registry {
+  kafkaImage: Kafka Image
+  zookeeperImage: Zookeepe Image
+  kafkaUiImage: Kafka UI Image
+}
+
+LocalMachine.terraformProject -> Git: push to git
+Git <- Terraform: get .tf file
+Terraform -> DO: create droplet
+DO -- VPS
+VPS.Docker -> DockerRegistry: pull images
+LocalMachine.Producer -> VPS.DockerNetwork.Nginx
+LocalMachine.Consumer -> VPS.DockerNetwork.Nginx
