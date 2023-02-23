@@ -3,3 +3,12 @@ on:
   push:
     branches:
       - main
+
+jobs:
+  connect-to-vps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
+        with:
+          SSHKEY: ${{ secrets.SSH_PRVIATE_KEY }} # ----- BEGIN RSA PRIVATE KEY----- ...
+      - run: ssh -T root@188.166.215.246 || true
