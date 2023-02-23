@@ -1,0 +1,5 @@
+name: "Kafka"
+on:
+  push:
+    branches:
+      - main

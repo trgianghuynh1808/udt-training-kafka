@@ -14,6 +14,11 @@ provider "digitalocean" {
 
 # kafka-server.tf
 # Create a new Web Droplet in the nyc2 region
+
+resource "digitalocean_ssh_key" "default" {
+  name = "terraform-training"
+  public_key = var.ssh_public_key
+}
 resource "digitalocean_droplet" "kafka" {
   image  = "ubuntu-20-04-x64"
   name   = "giang-kafka"
@@ -25,10 +30,5 @@ resource "digitalocean_droplet" "kafka" {
 
 
 
-
-resource "digitalocean_ssh_key" "default" {
-  name = "terraform-training"
-  public_key = var.ssh_public_key
-}
 
 
