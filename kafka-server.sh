@@ -21,13 +21,6 @@ sudo sh get-docker.sh
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-# SET MAX SESSION FOR SSH VPS
-echo "MaxSessions 50" >>/etc/ssh/sshd_config
-
-service ssh restart
-
-mkdir kafka-training
-cd kafka-training
 touch docker-compose.yml
 
 echo '
@@ -80,3 +73,5 @@ networks:
   kafka-network:
     driver: bridge
 ' >> docker-compose.yml
+
+docker-compose up
