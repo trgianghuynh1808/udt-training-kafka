@@ -27,7 +27,7 @@ echo "MaxSessions 50" >>/etc/ssh/sshd_config
 
 service ssh restart
 
-mkdir ~/kafka-training
+mkdir /kafka-training
 cd kafka-training
 touch docker-compose.yml
 
@@ -96,4 +96,4 @@ services:
 networks:
   kafka-network:
     driver: bridge
-' >> ~/kafka-training
+' >> docker-compose.yml
