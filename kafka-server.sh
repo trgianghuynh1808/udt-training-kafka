@@ -18,9 +18,8 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 
 # INSTALL DOCKER COMPOSE
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /u`sr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 # SET MAX SESSION FOR SSH VPS
 echo "MaxSessions 50" >>/etc/ssh/sshd_config
@@ -74,22 +73,6 @@ services:
     depends_on:
       - broker
       - zookeeper
-    networks:
-      - kafka-network
-
-  kafka-producer:
-    image: kafka/producer
-    container_name: kafka-producer
-    ports:
-      - "3000:3000"
-    networks:
-      - kafka-network
-
-  kafka-consumer:
-    image: kafka/consumer
-    container_name: kafka-consumer
-    ports:
-      - "3001:3001"
     networks:
       - kafka-network
 
