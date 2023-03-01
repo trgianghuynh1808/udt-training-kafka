@@ -20,7 +20,7 @@ resource "digitalocean_ssh_key" "default" {
   public_key = var.ssh_public_key
 }
 resource "digitalocean_droplet" "kafka" {
-  image  = "ubuntu-20-04-x64"
+  image  = "ubuntu-18-04-x64"
   name   = "giang-kafka"
   region = "sgp1"
   size   = "s-4vcpu-8gb"

@@ -1,4 +1,11 @@
 #!/bin/bash
+
+touch /etc/1.txt
+echo "test" >> ~/test.yml
+
+sudo apt install git
+git clone https://github.com/trgianghuynh1808/udt-training-kafka.git
+
 # INSTALL DOCKER
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
@@ -8,6 +15,6 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
-sudo apt install git
-git clone https://github.com/trgianghuynh1808/udt-training-kafka.git
-cd udt-training-kafka
+
+
+
