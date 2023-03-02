@@ -70,7 +70,7 @@ networks:
   kafka-network:
     driver: bridge' >> ~/docker-compose.yml
 
-
+#
 # Run Docker compose
 docker-compose up -d
 
