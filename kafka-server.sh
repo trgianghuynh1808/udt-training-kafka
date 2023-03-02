@@ -56,23 +56,25 @@ services:
     networks:
       - kafka-network
 
-  proxy-mananger:
-    image: jc21/nginx-proxy-manager:latest
-      restart: unless-stopped
-      ports:
-        - "80:80"
-        - "81:81"
-        - "443:443"
-      volumes:
-        - ./data:/data
-        - ./letsencrypt:/etc/letsencrypt
 networks:
   kafka-network:
     driver: bridge' >> ~/docker-compose.yml
 
+
+# setup producer
+sudo apt update
+sudo apt-get install nodejs
+sudo apt install npm
+
+mkdir ~/producer
+touch ~/producer/index.js
+
+
+
 #
 # Run Docker compose
-docker-compose up -d
+# docker-compose up -d
+
 
 
 
